@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Breast Cancer Prediction Model</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .form-section {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .form-section h5 {
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+        .feature-list li {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+        .doctor-info {
+            background-color: #ffe9e9;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .doctor-info h6 {
+            color: #b00;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-4">
+    <h1 class="text-center">Breast Cancer Prediction Model</h1>
+    <img src="{{url_for('static', filename='images.jpg')}}" alt="Breast Cancer" class="img-fluid rounded mb-4" style="height: 300px; width: 100%;">
+
+    <form action="/predict" method="POST">
+        <div class="form-section">
+            <h5>Please Provide Input Details for Prediction</h5>
+            
+            <ol List-style-type="1" class="feature-list">
+                
+                    <li>1. radius_mean</li>
+                    <li>2. texture_mean</li>
+                    <li>3. perimeter_mean</li>
+                    <li>4. area_mean</li>
+                    <li>5. smoothness_mean</li>
+                    <li>6. compactness_mean</li>
+                    <li>7. concavity_mean</li>
+                    <li>8. concave points_mean</li>
+                    <li>9. symmetry_mean</li>
+                    <li>10. fractal_dimension_mean</li>
+                    <li>11. radius_se</li>
+                    <li>12. texture_se</li>
+                    <li>13. perimeter_se</li>
+                    <li>14. area_se</li>
+                    <li>15. smoothness_se</li>
+                    <li>16. compactness_se</li>
+                    <li>17. concavity_se</li>
+                    <li>18. concave points_se</li>
+                    <li>19. symmetry_se</li>
+                    <li>20. fractal_dimension_se</li>
+                    <li>21. radius_worst</li>
+                    <li>22. texture_worst</li>
+                    <li>23. perimeter_worst</li>
+                    <li>24. area_worst</li>
+                    <li>25. smoothness_worst</li>
+                    <li>26. compactness_worst</li>
+                    <li>27. concavity_worst</li>
+                    <li>28. concave points_worst</li>
+                    <li>29. symmetry_worst</li>
+                    <li>30. fractal_dimension_worst</li>
+                
+                
+            </ol>
+        </div>
+
+        </div>
+
+        <div class="mb-3">
+            <label for="featureInput" class="form-label">Enter All Features as a Comma-Separated List:</label>
+            <input type="text" name="feature" class="form-control" id="featureInput" aria-describedby="featureHelp" placeholder="e.g., 17.99, 10.38, ...">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </form>
+
+    {% for i in message %}
+    {% if i == "cancerous" %}   
+        <div class="card mt-4" style="width: 18rem;">
+            <img src="{{url_for('static', filename='images1.jpg')}}" class="card-img-top" alt="Cancerous">
+            <div class="card-body">
+                <h5 class="card-title">Cancerous</h5>
+                <p class="card-text">
+                    You should consult a doctor as soon as possible. Early medical intervention is crucial, and a healthcare professional can guide you through treatment options.
+                </p>
+            </div>
+        </div>
+        
+        <div class="doctor-info mt-3">
+            <h6>Recommended Specialist:</h6>
+            <p>Dr. Sarah Thompson, MD<br>
+               Oncology Specialist at City Health Clinic<br>
+               Contact: +91 1234567890</p>
+        </div>
+    {% else %}
+        <div class="card mt-4" style="width: 18rem;">
+            <img src="{{url_for('static', filename='images2.jpeg')}}" class="card-img-top" alt="Not Cancerous">
+            <div class="card-body">
+                <h5 class="card-title">Not Cancerous</h5>
+                <p class="card-text">
+                    You are good to go! There are no signs of concern based on the current analysis. However, it’s always a good idea to maintain a healthy lifestyle.
+                </p>
+            </div>
+        </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

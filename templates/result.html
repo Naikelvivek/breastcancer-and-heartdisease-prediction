@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 400px;
+            margin: 100px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px #000;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            color: #555;
+            margin-top: 20px;
+        }
+        .doctor {
+            margin-top: 15px;
+            color: #d9534f;
+            font-weight: bold;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>{{ message }}</h2>
+        {% if message == "Heart Disease Predicted" %}
+            <p>You should consult a doctor as soon as possible. Early diagnosis and treatment can help manage heart disease effectively. Please follow a healthy lifestyle and take prescribed medications as advised by your healthcare provider.</p>
+            <p class="doctor">Suggested Doctor: Dr. John Doe, Cardiologist, Heart Care Clinic</p>
+        {% else %}
+            <p>You are good to go! No signs of heart disease were detected. However, maintaining a healthy lifestyle with regular exercise and a balanced diet is recommended for ongoing health.</p>
+        {% endif %}
+        <a href="/">Predict Again</a>
+    </div>
+</body>
+</html>
